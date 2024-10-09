@@ -1,0 +1,18 @@
+{
+	"welcome": "Selamat Datang di Layanan Pengunjung Asing",
+	"select_language": "Pilih Bahasa dan Kewarganegaraan Anda",
+	"continue_to_terms": "Lanjut ke Syarat dan Ketentuan",
+	"terms_and_conditions": "Syarat dan Ketentuan",
+	"foreign_visitor_regulations": "Peraturan Layanan Pengunjung Asing",
+	"proceed_to_registration": "Lanjut ke Formulir Pendaftaran",
+	"back_to_home": "Kembali ke Beranda",
+	"registration_form": "Formulir Pendaftaran Pengunjung Asing",
+	"submit_registration": "Kirim Pendaftaran",
+	"back_to_terms": "Kembali ke Syarat dan Ketentuan",
+	"name": "Nama",
+	"address": "Alamat",
+	"occupation": "Pekerjaan",
+	"nationality": "Kewarganegaraan",
+	"passport_number": "Nomor Paspor",
+	"purpose_of_visit": "Tujuan Kunjungan"
+}

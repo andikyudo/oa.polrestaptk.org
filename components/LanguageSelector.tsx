@@ -1,43 +1,37 @@
-import Image from "next/image";
+"use client";
 
-interface Country {
-	code: string;
-	name: string;
-}
+import { useRouter, usePathname } from "next/navigation";
+import { useTranslation } from "next-i18next";
 
-interface LanguageSelectorProps {
-	countries: Country[];
-	selectedLanguage: string;
-	onSelectLanguage: (code: string) => void;
-}
+const languages = [
+	{ code: "en", name: "English" },
+	{ code: "ko", name: "한국어" },
+	{ code: "id", name: "Bahasa Indonesia" },
+	{ code: "zh", name: "中文" },
+	{ code: "ja", name: "日本語" },
+];
 
-export default function LanguageSelector({
-	countries,
-	selectedLanguage,
-	onSelectLanguage,
-}: LanguageSelectorProps) {
+export default function LanguageSelector() {
+	const router = useRouter();
+	const pathname = usePathname();
+	const { i18n } = useTranslation();
+
+	const changeLanguage = (lang: string) => {
+		// Assuming you're using the app directory structure
+		router.push(pathname, { locale: lang });
+	};
+
 	return (
-		<div className='grid grid-cols-2 gap-4'>
-			{countries.map((country) => (
-				<button
-					key={country.code}
-					className={`flex items-center justify-center p-4 border rounded-md ${
-						selectedLanguage === country.code
-							? "border-blue-500 bg-blue-50"
-							: "border-gray-300 hover:bg-gray-50"
-					}`}
-					onClick={() => onSelectLanguage(country.code)}
-				>
-					<Image
-						src={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png`}
-						width={40}
-						height={30}
-						alt={`${country.name} flag`}
-						className='mr-2'
-					/>
-					<span className='text-sm font-medium'>{country.name}</span>
-				</button>
+		<select
+			onChange={(e) => changeLanguage(e.target.value)}
+			value={i18n.language}
+			className='mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md'
+		>
+			{languages.map((lang) => (
+				<option key={lang.code} value={lang.code}>
+					{lang.name}
+				</option>
 			))}
-		</div>
+		</select>
 	);
 }

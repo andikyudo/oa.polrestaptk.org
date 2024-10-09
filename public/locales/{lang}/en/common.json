@@ -1,0 +1,18 @@
+{
+	"welcome": "Welcome to Foreign Visitor Service",
+	"select_language": "Select Your Language and Nationality",
+	"continue_to_terms": "Continue to Terms and Conditions",
+	"terms_and_conditions": "Terms and Conditions",
+	"foreign_visitor_regulations": "Foreign Visitor Service Regulations",
+	"proceed_to_registration": "Proceed to Registration Form",
+	"back_to_home": "Back to Home",
+	"registration_form": "Foreign Visitor Registration Form",
+	"submit_registration": "Submit Registration",
+	"back_to_terms": "Back to Terms",
+	"name": "Name",
+	"address": "Address",
+	"occupation": "Occupation",
+	"nationality": "Nationality",
+	"passport_number": "Passport Number",
+	"purpose_of_visit": "Purpose of Visit"
+}

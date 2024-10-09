@@ -1,10 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import {
+	CalendarIcon,
+	ClockIcon,
+	UserIcon,
+	MapPinIcon,
+	BriefcaseIcon,
+	FlagIcon,
+	FileTextIcon,
+	PlaneIcon,
+	GlobeIcon,
+} from "lucide-react";
+import { useFormState } from "../hooks/useFormState";
+import { InputField } from "../../components/InputField";
 
 export default function RegistrationForm() {
-	const [formData, setFormData] = useState({
+	const { t } = useTranslation("common");
+	const { state: formData, handleChange } = useFormState({
 		name: "",
 		address: "",
 		occupation: "",
@@ -30,436 +44,207 @@ export default function RegistrationForm() {
 		cityInIndonesia: "",
 	});
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = e.target;
-		setFormData((prevState) => ({ ...prevState, [name]: value }));
-	};
-
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		console.log(formData);
-		// Here you would typically send the data to your backend
 	};
 
 	return (
-		<div className='min-h-screen bg-gray-100 p-4'>
-			<main className='container mx-auto max-w-3xl'>
-				<h1 className='text-3xl font-bold text-center text-blue-800 mb-8'>
-					Foreign Visitor Registration Form
-				</h1>
-				<form
-					onSubmit={handleSubmit}
-					className='bg-white shadow-md rounded-lg p-6'
-				>
-					<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-						<div>
-							<label
-								htmlFor='name'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Name of Reporter
-							</label>
-							<input
-								type='text'
-								id='name'
+		<div className='min-h-screen bg-gradient-to-b from-blue-100 to-white dark:from-blue-900 dark:to-gray-900 py-12 px-4 sm:px-6 lg:px-8'>
+			<div className='max-w-4xl mx-auto'>
+				<div className='bg-white dark:bg-gray-800 shadow-2xl rounded-lg overflow-hidden'>
+					<div className='bg-blue-600 dark:bg-blue-800 p-6 sm:p-10'>
+						<h1 className='text-3xl sm:text-4xl font-bold text-center text-white'>
+							{t("registration_form")}
+						</h1>
+					</div>
+					<form onSubmit={handleSubmit} className='p-6 sm:p-10 space-y-8'>
+						<div className='grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8'>
+							<InputField
 								name='name'
+								icon={UserIcon}
 								value={formData.name}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='address'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Address of Reporter
-							</label>
-							<input
-								type='text'
-								id='address'
+							<InputField
 								name='address'
+								icon={MapPinIcon}
 								value={formData.address}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='occupation'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Occupation of Reporter
-							</label>
-							<input
-								type='text'
-								id='occupation'
+							<InputField
 								name='occupation'
+								icon={BriefcaseIcon}
 								value={formData.occupation}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='reportDate'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Report Date
-							</label>
-							<input
-								type='date'
-								id='reportDate'
+							<InputField
 								name='reportDate'
+								icon={CalendarIcon}
+								type='date'
 								value={formData.reportDate}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='reportTime'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Report Time
-							</label>
-							<input
-								type='time'
-								id='reportTime'
+							<InputField
 								name='reportTime'
+								icon={ClockIcon}
+								type='time'
 								value={formData.reportTime}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='guestName'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Guest Name
-							</label>
-							<input
-								type='text'
-								id='guestName'
+							<InputField
 								name='guestName'
+								icon={UserIcon}
 								value={formData.guestName}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='guestAddress'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Guest Address
-							</label>
-							<input
-								type='text'
-								id='guestAddress'
+							<InputField
 								name='guestAddress'
+								icon={MapPinIcon}
 								value={formData.guestAddress}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='nationality'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Nationality
-							</label>
-							<input
-								type='text'
-								id='nationality'
+							<InputField
 								name='nationality'
+								icon={FlagIcon}
 								value={formData.nationality}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='placeOfBirth'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Place of Birth
-							</label>
-							<input
-								type='text'
-								id='placeOfBirth'
+							<InputField
 								name='placeOfBirth'
+								icon={MapPinIcon}
 								value={formData.placeOfBirth}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='dateOfBirth'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Date of Birth
-							</label>
-							<input
-								type='date'
-								id='dateOfBirth'
+							<InputField
 								name='dateOfBirth'
+								icon={CalendarIcon}
+								type='date'
 								value={formData.dateOfBirth}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='profession'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Profession
-							</label>
-							<input
-								type='text'
-								id='profession'
+							<InputField
 								name='profession'
+								icon={BriefcaseIcon}
 								value={formData.profession}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='passportNumber'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Passport Number
-							</label>
-							<input
-								type='text'
-								id='passportNumber'
+							<InputField
 								name='passportNumber'
+								icon={FileTextIcon}
 								value={formData.passportNumber}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='passportExpiry'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Passport Expiry Date
-							</label>
-							<input
-								type='date'
-								id='passportExpiry'
+							<InputField
 								name='passportExpiry'
+								icon={CalendarIcon}
+								type='date'
 								value={formData.passportExpiry}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='issuedBy'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Passport Issued By
-							</label>
-							<input
-								type='text'
-								id='issuedBy'
+							<InputField
 								name='issuedBy'
+								icon={FlagIcon}
 								value={formData.issuedBy}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='visaType'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Visa Type
-							</label>
-							<input
-								type='text'
-								id='visaType'
+							<InputField
 								name='visaType'
+								icon={FileTextIcon}
 								value={formData.visaType}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='visaDuration'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Visa Duration
-							</label>
-							<input
-								type='text'
-								id='visaDuration'
+							<InputField
 								name='visaDuration'
+								icon={ClockIcon}
 								value={formData.visaDuration}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='arrivalDate'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Arrival Date
-							</label>
-							<input
-								type='date'
-								id='arrivalDate'
+							<InputField
 								name='arrivalDate'
+								icon={CalendarIcon}
+								type='date'
 								value={formData.arrivalDate}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='arrivalFrom'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Arrival From
-							</label>
-							<input
-								type='text'
-								id='arrivalFrom'
+							<InputField
 								name='arrivalFrom'
+								icon={PlaneIcon}
 								value={formData.arrivalFrom}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='purposeOfVisit'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Purpose of Visit
-							</label>
-							<input
-								type='text'
-								id='purposeOfVisit'
+							<InputField
 								name='purposeOfVisit'
+								icon={BriefcaseIcon}
 								value={formData.purposeOfVisit}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='departureDate'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Departure Date
-							</label>
-							<input
-								type='date'
-								id='departureDate'
+							<InputField
 								name='departureDate'
+								icon={CalendarIcon}
+								type='date'
 								value={formData.departureDate}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='nextDestination'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Next Destination
-							</label>
-							<input
-								type='text'
-								id='nextDestination'
+							<InputField
 								name='nextDestination'
+								icon={MapPinIcon}
 								value={formData.nextDestination}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='nextCountry'
-								className='block text-sm font-medium text-gray-700'
-							>
-								Next Country
-							</label>
-							<input
-								type='text'
-								id='nextCountry'
+							<InputField
 								name='nextCountry'
+								icon={GlobeIcon}
 								value={formData.nextCountry}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
-						</div>
-						<div>
-							<label
-								htmlFor='cityInIndonesia'
-								className='block text-sm font-medium text-gray-700'
-							>
-								City in Indonesia
-							</label>
-							<input
-								type='text'
-								id='cityInIndonesia'
+							<InputField
 								name='cityInIndonesia'
+								icon={MapPinIcon}
 								value={formData.cityInIndonesia}
 								onChange={handleChange}
-								className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
-								required
+								t={t}
 							/>
 						</div>
-					</div>
-					<div className='mt-6 flex flex-col space-y-4'>
-						<button
-							type='submit'
-							className='w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300'
-						>
-							Submit Registration
-						</button>
-						<Link
-							href='/terms'
-							className='w-full bg-blue-600 text-white text-center py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300'
-						>
-							Back to Terms
-						</Link>
-					</div>
-				</form>
-			</main>
+						<div className='flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0 mt-8'>
+							<Link
+								href='/terms'
+								className='w-full sm:w-auto bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-6 rounded inline-flex items-center justify-center transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105'
+							>
+								{t("back_to_terms")}
+							</Link>
+							<button
+								type='submit'
+								className='w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded inline-flex items-center justify-center transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105'
+							>
+								{t("submit_registration")}
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 	);
 }
