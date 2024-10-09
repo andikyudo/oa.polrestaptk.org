@@ -28,7 +28,7 @@ export default function Home() {
 						href='/terms'
 						className='mt-6 block w-full bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105'
 					>
-						{t("continue_to_terms")}
+						{t("Continue")}
 					</Link>
 				</div>
 			</main>

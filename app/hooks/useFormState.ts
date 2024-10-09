@@ -1,4 +1,3 @@
-// app/hooks/useFormState.ts
 import { useState } from "react";
 
 export const useFormState = (initialState: Record<string, string>) => {

@@ -27,13 +27,13 @@ export default function TermsAndConditions() {
 								href='/form'
 								className='w-full bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105'
 							>
-								{t("proceed_to_registration")}
+								{t("Proceed to Registration")}
 							</Link>
 							<Link
 								href='/'
 								className='w-full bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105'
 							>
-								{t("back_to_home")}
+								{t("Back to home")}
 							</Link>
 						</div>
 					</div>
