@@ -1,37 +1,22 @@
 "use client";
 
-import { useRouter, usePathname } from "next/navigation";
-import { useTranslation } from "next-i18next";
+import React from "react";
+import { useLanguage } from "../components/LanguageContext";
 
-const languages = [
-	{ code: "en", name: "English" },
-	{ code: "ko", name: "한국어" },
-	{ code: "id", name: "Bahasa Indonesia" },
-	{ code: "zh", name: "中文" },
-	{ code: "ja", name: "日本語" },
-];
-
-export default function LanguageSelector() {
-	const router = useRouter();
-	const pathname = usePathname();
-	const { i18n } = useTranslation();
-
-	const changeLanguage = (lang: string) => {
-		// Assuming you're using the app directory structure
-		router.push(pathname, { locale: lang });
-	};
+const LanguageSelector: React.FC = () => {
+	const { language, setLanguage } = useLanguage();
 
 	return (
 		<select
-			onChange={(e) => changeLanguage(e.target.value)}
-			value={i18n.language}
-			className='mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md'
+			value={language}
+			onChange={(e) => setLanguage(e.target.value as "en" | "id" | "zh")}
+			className='w-full p-2 border border-gray-300 rounded-md'
 		>
-			{languages.map((lang) => (
-				<option key={lang.code} value={lang.code}>
-					{lang.name}
-				</option>
-			))}
+			<option value='en'>English</option>
+			<option value='id'>Bahasa Indonesia</option>
+			<option value='zh'>中文</option>
 		</select>
 	);
-}
+};
+
+export default LanguageSelector;

@@ -1,10 +1,10 @@
 "use client";
 
-import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import { useLanguage } from "../../components/LanguageContext";
 
 export default function TermsAndConditions() {
-	const { t } = useTranslation("common");
+	const { t } = useLanguage();
 
 	return (
 		<div className='min-h-screen bg-gradient-to-b from-blue-100 to-white dark:from-blue-900 dark:to-gray-900 p-4'>
@@ -27,13 +27,13 @@ export default function TermsAndConditions() {
 								href='/form'
 								className='w-full bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105'
 							>
-								{t("Proceed to Registration")}
+								{t("proceed_to_registration")}
 							</Link>
 							<Link
 								href='/'
 								className='w-full bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105'
 							>
-								{t("Back to home")}
+								{t("back_to_home")}
 							</Link>
 						</div>
 					</div>

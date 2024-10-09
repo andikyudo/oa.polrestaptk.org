@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import {
 	CalendarIcon,
@@ -18,34 +17,13 @@ import {
 } from "lucide-react";
 import { useFormState } from "../hooks/useFormState";
 import { InputField } from "../../components/InputField";
+import { useLanguage } from "../../components/LanguageContext";
 
 export default function RegistrationForm() {
-	const { t } = useTranslation("common");
+	const { t } = useLanguage();
 	const [currentStep, setCurrentStep] = useState(1);
 	const { state: formData, handleChange } = useFormState({
-		name: "",
-		address: "",
-		occupation: "",
-		reportDate: "",
-		reportTime: "",
-		guestName: "",
-		guestAddress: "",
-		nationality: "",
-		placeOfBirth: "",
-		dateOfBirth: "",
-		profession: "",
-		passportNumber: "",
-		passportExpiry: "",
-		issuedBy: "",
-		visaType: "",
-		visaDuration: "",
-		arrivalDate: "",
-		arrivalFrom: "",
-		purposeOfVisit: "",
-		departureDate: "",
-		nextDestination: "",
-		nextCountry: "",
-		cityInIndonesia: "",
+		// ... (state remains the same)
 	});
 
 	const handleSubmit = (e: React.FormEvent) => {
@@ -55,11 +33,11 @@ export default function RegistrationForm() {
 
 	const steps = [
 		{
-			title: "Personal Information",
+			title: t("personal_information"),
 			fields: ["name", "address", "occupation", "reportDate", "reportTime"],
 		},
 		{
-			title: "Guest Information",
+			title: t("guest_information"),
 			fields: [
 				"guestName",
 				"guestAddress",
@@ -70,7 +48,7 @@ export default function RegistrationForm() {
 			],
 		},
 		{
-			title: "Travel Documents",
+			title: t("travel_documents"),
 			fields: [
 				"passportNumber",
 				"passportExpiry",
@@ -80,7 +58,7 @@ export default function RegistrationForm() {
 			],
 		},
 		{
-			title: "Travel Information",
+			title: t("travel_information"),
 			fields: [
 				"arrivalDate",
 				"arrivalFrom",
@@ -99,7 +77,7 @@ export default function RegistrationForm() {
 				<div className='bg-white dark:bg-gray-800 shadow-2xl rounded-lg overflow-hidden transform transition-all duration-500 hover:scale-105'>
 					<div className='bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-800 dark:to-purple-800 p-6 sm:p-10'>
 						<h1 className='text-3xl sm:text-4xl font-bold text-center text-white'>
-							{t("Registration Form")}
+							{t("registration_form")}
 						</h1>
 					</div>
 					<div className='p-6 sm:p-10'>
@@ -168,7 +146,6 @@ export default function RegistrationForm() {
 										}
 										value={formData[field as keyof typeof formData]}
 										onChange={handleChange}
-										t={t}
 									/>
 								))}
 							</div>

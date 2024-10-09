@@ -1,12 +1,12 @@
 "use client";
 
-import { useTranslation } from "next-i18next";
+import { useLanguage } from "../components/LanguageContext";
 import Image from "next/image";
 import Link from "next/link";
 import LanguageSelector from "../components/LanguageSelector";
 
 export default function Home() {
-	const { t } = useTranslation("common");
+	const { t } = useLanguage();
 
 	return (
 		<div className='min-h-screen bg-gradient-to-b from-blue-100 to-white dark:from-blue-900 dark:to-gray-900 flex flex-col items-center justify-center p-4'>
@@ -28,7 +28,7 @@ export default function Home() {
 						href='/terms'
 						className='mt-6 block w-full bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105'
 					>
-						{t("Continue")}
+						{t("continue")}
 					</Link>
 				</div>
 			</main>
