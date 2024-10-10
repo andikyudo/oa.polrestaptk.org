@@ -115,6 +115,8 @@ export default function RegistrationForm() {
 									<InputField
 										key={field}
 										name={field}
+										label={t(field)}
+										placeholder={t(`enter_${field}`)}
 										icon={
 											field.includes("Date")
 												? CalendarIcon

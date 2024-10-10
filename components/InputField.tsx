@@ -2,10 +2,11 @@
 
 import React from "react";
 import { IconType } from "lucide-react";
-import { useLanguage } from "../components/LanguageContext";
 
 interface InputFieldProps {
 	name: string;
+	label: string;
+	placeholder: string;
 	icon: IconType;
 	type?: string;
 	value: string;
@@ -14,20 +15,20 @@ interface InputFieldProps {
 
 export const InputField: React.FC<InputFieldProps> = ({
 	name,
+	label,
+	placeholder,
 	icon: Icon,
 	type = "text",
 	value,
 	onChange,
 }) => {
-	const { t } = useLanguage();
-
 	return (
 		<div className='relative mb-6'>
 			<label
 				htmlFor={name}
 				className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1'
 			>
-				{t(name)}
+				{label}
 			</label>
 			<div className='relative mt-1 rounded-md shadow-sm'>
 				<div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'>
@@ -43,7 +44,7 @@ export const InputField: React.FC<InputFieldProps> = ({
 					value={value}
 					onChange={onChange}
 					className='block w-full pr-3 py-4 rounded-md border-gray-300 dark:border-gray-600 pl-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm'
-					placeholder={t(`enter_${name}`)}
+					placeholder={placeholder}
 					required
 				/>
 			</div>
