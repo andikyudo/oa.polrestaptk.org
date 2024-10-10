@@ -43,7 +43,7 @@ export const InputField: React.FC<InputFieldProps> = ({
 					name={name}
 					value={value}
 					onChange={onChange}
-					className='block w-full pr-3 py-4 rounded-md border-gray-300 dark:border-gray-600 pl-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm'
+					className='block w-full pr-3 py-4 rounded-md border-gray-300 dark:border-gray-600 pl-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 text-white sm:text-sm'
 					placeholder={placeholder}
 					required
 				/>

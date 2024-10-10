@@ -9,7 +9,7 @@ import {
 
 const translations: Record<Language, Record<string, string>> = {
 	en: {
-		welcome: "Welcome to Foreign Visitor Service",
+		welcome: "Welcome to<br>Foreign Visitor Service",
 		select_language: "Please select your language",
 		continue: "Continue",
 		terms_and_conditions: "Terms and Conditions",
@@ -57,7 +57,7 @@ const translations: Record<Language, Record<string, string>> = {
 		// Tambahkan terjemahan lainnya sesuai kebutuhan
 	},
 	id: {
-		welcome: "Selamat Datang di Layanan Pengunjung Asing",
+		welcome: "Selamat Datang<br>di Layanan Pengunjung Orang Asing",
 		select_language: "Silakan pilih bahasa Anda",
 		continue: "Lanjutkan",
 		registration_form: "Formulir Pendaftaran",

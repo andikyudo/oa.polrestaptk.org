@@ -35,10 +35,10 @@ const LanguageSelector: React.FC = () => {
 	return (
 		<div className='relative' ref={dropdownRef}>
 			<div
-				className='w-full p-2 pl-10 border border-gray-300 rounded-md bg-white dark:bg-gray-800 text-black dark:text-white cursor-pointer flex items-center justify-between'
+				className='w-full p-2 pl-4 border border-gray-300 rounded-md bg-white text-black  cursor-pointer flex items-center justify-between'
 				onClick={() => setIsOpen(!isOpen)}
 			>
-				<div className='flex items-center'>
+				<div className='flex items-center '>
 					<Image
 						src={languages.find((lang) => lang.code === language)?.flag || ""}
 						alt={`${language} flag`}
@@ -61,11 +61,11 @@ const LanguageSelector: React.FC = () => {
 				</svg>
 			</div>
 			{isOpen && (
-				<div className='absolute top-full left-0 w-full bg-white dark:bg-gray-800 border border-gray-300 rounded-md mt-1 shadow-lg z-50 overflow-hidden'>
+				<div className='absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md mt-1 shadow-lg z-50 overflow-hidden'>
 					{languages.map((lang) => (
 						<div
 							key={lang.code}
-							className='flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer'
+							className='flex items-center p-2 hover:bg-gray-100 text-black cursor-pointer'
 							onClick={() => handleLanguageChange(lang.code)}
 						>
 							<Image
