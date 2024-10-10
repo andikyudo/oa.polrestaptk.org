@@ -36,12 +36,12 @@ const LanguageSelector: React.FC = () => {
 	};
 
 	return (
-		<div className='relative' ref={dropdownRef}>
+		<>
 			<div
-				className='w-full p-2 pl-4 border border-gray-300 rounded-md bg-white text-black  cursor-pointer flex items-center justify-between'
-				onClick={() => setIsOpen(!isOpen)}
+				className='w-full p-2 pl-4 border border-gray-300 rounded-md bg-white text-black cursor-pointer flex items-center justify-between'
+				onClick={() => setIsOpen(true)}
 			>
-				<div className='flex items-center '>
+				<div className='flex items-center'>
 					<Image
 						src={languages.find((lang) => lang.code === language)?.flag || ""}
 						alt={`${language} flag`}
@@ -64,26 +64,37 @@ const LanguageSelector: React.FC = () => {
 				</svg>
 			</div>
 			{isOpen && (
-				<div className='absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md mt-1 shadow-lg z-50 overflow-hidden'>
-					{languages.map((lang) => (
-						<div
-							key={lang.code}
-							className='flex items-center p-2 hover:bg-gray-100 text-black cursor-pointer'
-							onClick={() => handleLanguageChange(lang.code)}
+				<div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'>
+					<div className='bg-white rounded-lg p-4 max-w-sm w-full'>
+						<h2 className='text-lg font-bold mb-4 text-black'>
+							Select Language
+						</h2>
+						{languages.map((lang) => (
+							<div
+								key={lang.code}
+								className='flex items-center p-2 pb-4 hover:bg-gray-100 text-black cursor-pointer'
+								onClick={() => handleLanguageChange(lang.code)}
+							>
+								<Image
+									src={lang.flag}
+									alt={`${lang.name} flag`}
+									width={20}
+									height={15}
+									className='mr-2'
+								/>
+								{lang.name}
+							</div>
+						))}
+						<button
+							className='mt-4 w-full bg-blue-500 text-white p-2 rounded'
+							onClick={() => setIsOpen(false)}
 						>
-							<Image
-								src={lang.flag}
-								alt={`${lang.name} flag`}
-								width={20}
-								height={15}
-								className='mr-2'
-							/>
-							{lang.name}
-						</div>
-					))}
+							Close
+						</button>
+					</div>
 				</div>
 			)}
-		</div>
+		</>
 	);
 };
 
