@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { IconType } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 
 interface InputFieldProps {
 	name: string;
 	label: string;
 	placeholder: string;
-	icon: IconType;
+	icon: LucideIcon;
 	type?: string;
 	value: string;
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

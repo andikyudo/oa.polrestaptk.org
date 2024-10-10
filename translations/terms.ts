@@ -1,6 +1,41 @@
 // translations/terms.ts
+export type Language = "en" | "id" | "zh" | "kra" | "ara" | "thai";
 
-export const termsTranslations = {
+export type TermsTranslationKey =
+	| "terms_and_conditions"
+	| "legal_basis"
+	| "law_1"
+	| "law_2"
+	| "law_3"
+	| "law_4"
+	| "law_5"
+	| "police_authority"
+	| "stm_issuance"
+	| "stm_requirement_1"
+	| "stm_requirement_2"
+	| "stm_requirement_3"
+	| "sponsor_obligation"
+	| "sponsor_requirement_1"
+	| "sponsor_requirement_2"
+	| "sponsor_requirement_3"
+	| "sponsor_requirement_4"
+	| "sponsor_requirement_5"
+	| "sponsor_requirement_6"
+	| "sponsor_requirement_7"
+	| "sponsor_requirement_8"
+	| "accommodation_obligation"
+	| "accommodation_requirement_1"
+	| "accommodation_requirement_2"
+	| "accommodation_requirement_3"
+	| "accommodation_requirement_4"
+	| "accommodation_requirement_5"
+	| "accommodation_requirement_6"
+	| "proceed_to_registration"
+	| "back_to_home";
+export const termsTranslations: Record<
+	Language,
+	Record<TermsTranslationKey, string>
+> = {
 	en: {
 		terms_and_conditions: "Terms and Conditions",
 		legal_basis: "Legal Basis",
@@ -11,6 +46,8 @@ export const termsTranslations = {
 		law_4: "Law NO. 8 YEAR 1981 on Criminal Procedure Code",
 		law_5:
 			"Law NO. 2 YEAR 2002 on the National Police of the Republic of Indonesia ",
+		police_authority:
+			"The National Police of the Republic of Indonesia generally has the authority to conduct functional police supervision of foreigners within Indonesian territory in coordination with relevant agencies.",
 		stm_issuance: "Issuance of Report Certificate (STM)",
 		stm_requirement_1:
 			"Sponsor reports to the nearest Police office within 1 X 24 hours:",
@@ -36,6 +73,8 @@ export const termsTranslations = {
 		accommodation_requirement_4: "ID Card of House Owner / Person in Charge",
 		accommodation_requirement_5: "Passport",
 		accommodation_requirement_6: "Visa",
+		proceed_to_registration: "Proceed to Registration",
+		back_to_home: "Back to Home",
 	},
 	id: {
 		terms_and_conditions: "Syarat dan Ketentuan",
@@ -46,7 +85,8 @@ export const termsTranslations = {
 		law_4: "UU. NO. : 8 THN 1981 Tentang KUHAP",
 		law_5:
 			"UU NO. : 2 THN 2002 Tentang Kepolisian Negara Republik Indonesia Pasal 15 ayat (2) huruf I Kepolisian Negara RI secara umum berwenang : Melakukan pengawasan fungsional Kepolisian terhadap orang asing yang berada di wilayah Indonesia dengan koordinasi instansi terkait",
-
+		police_authority:
+			"Kepolisian Negara Republik Indonesia secara umum berwenang melakukan pengawasan fungsional Kepolisian terhadap orang asing yang berada di wilayah Indonesia dengan koordinasi instansi terkait.",
 		stm_issuance: "Penerbitan Surat Tanda Melapor (STM)",
 		stm_requirement_1:
 			"Sponsor melapor kepada kantor Kepolisian terdekat selama 1 X 24 jam :",
@@ -72,6 +112,8 @@ export const termsTranslations = {
 		accommodation_requirement_4: "KTP Pemilik Rumah / Penanggung Jawab",
 		accommodation_requirement_5: "Paspor",
 		accommodation_requirement_6: "Visa",
+		proceed_to_registration: "Lanjut ke Pendaftaran",
+		back_to_home: "Kembali ke Beranda",
 	},
 	zh: {
 		terms_and_conditions: "条款和条件",
@@ -104,6 +146,8 @@ export const termsTranslations = {
 		accommodation_requirement_4: "房主/负责人的身份证",
 		accommodation_requirement_5: "护照",
 		accommodation_requirement_6: "签证",
+		proceed_to_registration: "继续注册",
+		back_to_home: "返回首页",
 	},
 	kra: {
 		terms_and_conditions: "이용약관",
@@ -138,6 +182,8 @@ export const termsTranslations = {
 		accommodation_requirement_4: "주택 소유자/책임자의 신분증",
 		accommodation_requirement_5: "여권",
 		accommodation_requirement_6: "비자",
+		proceed_to_registration: "등록 진행",
+		back_to_home: "홈으로 돌아가기",
 	},
 	ara: {
 		terms_and_conditions: "الشروط والأحكام",
@@ -173,6 +219,8 @@ export const termsTranslations = {
 		accommodation_requirement_4: "بطاقة هوية مالك المنزل / الشخص المسؤول",
 		accommodation_requirement_5: "جواز السفر",
 		accommodation_requirement_6: "التأشيرة",
+		proceed_to_registration: "المتابعة إلى التسجيل",
+		back_to_home: "العودة إلى الصفحة الرئيسية",
 	},
 	thai: {
 		terms_and_conditions: "ข้อกำหนดและเงื่อนไข",
@@ -212,5 +260,7 @@ export const termsTranslations = {
 			"บัตรประจำตัวประชาชนของเจ้าของบ้าน / ผู้รับผิดชอบ",
 		accommodation_requirement_5: "หนังสือเดินทาง",
 		accommodation_requirement_6: "วีซ่า",
+		proceed_to_registration: "ดำเนินการลงทะเบียน",
+		back_to_home: "กลับสู่หน้าหลัก",
 	},
 };

@@ -1,13 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useLanguage } from "../../components/LanguageContext";
-import { termsTranslations } from "../../translations/terms";
+import { useLanguage, Language } from "../../components/LanguageContext";
+import {
+	termsTranslations,
+	TermsTranslationKey,
+} from "../../translations/terms";
 import TermsSection from "../../components/TermsSection";
 
 export default function TermsAndConditions() {
 	const { language } = useLanguage();
-	const t = (key: string) => termsTranslations[language][key] || key;
+	const t = (key: TermsTranslationKey): string => {
+		return termsTranslations[language as Language][key] || key;
+	};
 
 	return (
 		<main className='container mx-auto max-w-2xl p-4'>

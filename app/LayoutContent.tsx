@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image"; // Tambahkan import ini
-import { useLanguage } from "../components/LanguageContext";
+
 import { useHeader } from "../components/HeaderContext";
 import ThemeToggle from "../components/ThemeToggle";
 
@@ -11,7 +11,6 @@ export default function LayoutContent({
 }: {
 	children: React.ReactNode;
 }) {
-	const { t } = useLanguage();
 	const { showHeader } = useHeader();
 
 	return (
