@@ -11,6 +11,9 @@ const LanguageSelector: React.FC = () => {
 		{ code: "en", name: "English", flag: "/flags/en.png" },
 		{ code: "id", name: "Bahasa Indonesia", flag: "/flags/id.png" },
 		{ code: "zh", name: "中文", flag: "/flags/zh.png" },
+		{ code: "kra", name: "한국어", flag: "/flags/kra.png" },
+		{ code: "ara", name: "العربية", flag: "/flags/ara.png" },
+		{ code: "thai", name: "ไทย", flag: "/flags/thai.png" },
 	];
 
 	useEffect(() => {
@@ -28,7 +31,7 @@ const LanguageSelector: React.FC = () => {
 	}, []);
 
 	const handleLanguageChange = (code: string) => {
-		setLanguage(code as "en" | "id" | "zh");
+		setLanguage(code as "en" | "id" | "zh" | "kra" | "ara" | "thai");
 		setIsOpen(false);
 	};
 
