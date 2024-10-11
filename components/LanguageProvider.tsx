@@ -54,6 +54,11 @@ const translations: Record<Language, Record<string, string>> = {
 		enter_occupation: "Enter your occupation",
 		select_date: "Select date",
 		select_time: "Select time",
+		name_info: "Enter your full name as it appears on your official documents.",
+		passport_number_info:
+			"Your passport number can be found on the main page of your passport.",
+		visa_type_info:
+			"Select the type of visa you are applying for or currently hold.",
 		// Tambahkan terjemahan lainnya sesuai kebutuhan
 	},
 	id: {
@@ -114,6 +119,7 @@ const translations: Record<Language, Record<string, string>> = {
 		enter_nextDestination: "Masukkan tujuan selanjutnya",
 		enter_nextCountry: "Masukkan negara selanjutnya",
 		enter_cityInIndonesia: "Masukkan kota di Indonesia",
+		name_info: "Lengkapi Nama Sponsor",
 		// ... tambahkan terjemahan lainnya jika diperlukan
 	},
 	zh: {

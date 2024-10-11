@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
 	CalendarIcon,
 	ClockIcon,
@@ -17,9 +17,11 @@ import {
 import { useFormState } from "../hooks/useFormState";
 import { InputField } from "../../components/InputField";
 import { useLanguage } from "../../components/LanguageContext";
+import { useHeader } from "../../components/HeaderContext";
 
 export default function RegistrationForm() {
 	const { t } = useLanguage();
+	const { setShowHeader } = useHeader();
 	const [currentStep, setCurrentStep] = useState(1);
 	const { state: formData, handleChange } = useFormState({
 		// ... (state remains the same)
@@ -70,16 +72,33 @@ export default function RegistrationForm() {
 		},
 	];
 
+	const getInfoText = (field: string) => {
+		switch (field) {
+			case "name":
+				return t("name_info");
+			case "passport_number":
+				return t("passport_number_info");
+			case "visa_type":
+				return t("visa_type_info");
+			// Add more cases for other fields that need info
+			default:
+				return undefined;
+		}
+	};
+
+	useEffect(() => {
+		setShowHeader(true);
+		return () => setShowHeader(false);
+	}, [setShowHeader]);
+
 	return (
-		<div className='min-h-screen bg-gradient-to-br from-blue-100 via-white to-purple-100 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900 py-12 px-4 sm:px-6 lg:px-8 transition-all duration-500'>
-			<div className='max-w-4xl mx-auto'>
-				<div className='bg-white dark:bg-gray-800 shadow-2xl rounded-lg overflow-hidden transform transition-all duration-500 hover:scale-105'>
-					<div className='bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-800 dark:to-purple-800 p-6 sm:p-10'>
-						<h1 className='text-3xl sm:text-4xl font-bold text-center text-white'>
+		<div className='min-h-screen bg-white    lg:px-8 transition-all duration-500 rounded-lg'>
+			<div className=' max-w-4xl mx-auto'>
+				<div className='bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden'>
+					<div className='p-6 sm:p-10'>
+						<h1 className='text-3xl sm:text-4xl font-bold text-center text-gray-900 dark:text-white mb-8'>
 							{t("registration_form")}
 						</h1>
-					</div>
-					<div className='p-6 sm:p-10'>
 						<div className='mb-8'>
 							<div className='flex justify-between items-center'>
 								{steps.map((step, index) => (
@@ -90,16 +109,18 @@ export default function RegistrationForm() {
 													? "bg-green-500"
 													: currentStep === index + 1
 													? "bg-blue-500"
-													: "bg-gray-300"
+													: "bg-gray-300 dark:bg-gray-600"
 											} text-white font-bold`}
 										>
 											{currentStep > index + 1 ? "✓" : index + 1}
 										</div>
-										<div className='text-xs mt-2'>{step.title}</div>
+										<div className='text-[10px] pl-5 mt-2 text-gray-600 dark:text-gray-400'>
+											{step.title}
+										</div>
 									</div>
 								))}
 							</div>
-							<div className='mt-4 h-2 bg-gray-200 rounded-full'>
+							<div className='mt-4 h-2 bg-gray-200 dark:bg-gray-700 rounded-full'>
 								<div
 									className='h-full bg-blue-500 rounded-full transition-all duration-500 ease-out'
 									style={{
@@ -109,7 +130,7 @@ export default function RegistrationForm() {
 							</div>
 						</div>
 						<form onSubmit={handleSubmit}>
-							<div className='space-y-6'>
+							<div className='space-y-6 '>
 								{steps[currentStep - 1].fields.map((field) => (
 									<InputField
 										key={field}
@@ -147,6 +168,7 @@ export default function RegistrationForm() {
 										}
 										value={formData[field as keyof typeof formData]}
 										onChange={handleChange}
+										infoText={getInfoText(field)}
 									/>
 								))}
 							</div>
@@ -155,7 +177,7 @@ export default function RegistrationForm() {
 									<button
 										type='button'
 										onClick={() => setCurrentStep(currentStep - 1)}
-										className='bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105'
+										className='bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-bold py-2 px-4 rounded inline-flex items-center transition duration-300 ease-in-out'
 									>
 										<ChevronLeftIcon className='h-5 w-5 mr-2' />
 										{t("previous")}
@@ -165,7 +187,7 @@ export default function RegistrationForm() {
 									<button
 										type='button'
 										onClick={() => setCurrentStep(currentStep + 1)}
-										className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105'
+										className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center transition duration-300 ease-in-out ml-auto'
 									>
 										{t("next")}
 										<ChevronRightIcon className='h-5 w-5 ml-2' />
@@ -173,7 +195,7 @@ export default function RegistrationForm() {
 								) : (
 									<button
 										type='submit'
-										className='bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded inline-flex items-center transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105'
+										className='bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded inline-flex items-center transition duration-300 ease-in-out ml-auto'
 									>
 										{t("submit_registration")}
 									</button>
