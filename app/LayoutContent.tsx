@@ -16,7 +16,7 @@ export default function LayoutContent({
 	return (
 		<div className='min-h-screen flex flex-col bg-white from-blue-100 to-white dark:to-gray-900 '>
 			{showHeader && (
-				<header className='bg-white dark:bg-yellow-300 text-black p-6 shadow-xl'>
+				<header className='bg-white dark:bg-zinc-700 text-black p-6 shadow-xl'>
 					<div className='container mx-auto flex justify-between items-center'>
 						<div className='flex items-center'>
 							{" "}
@@ -24,14 +24,18 @@ export default function LayoutContent({
 							<Image
 								src='/logo_polresta.png' // Ganti dengan path logo Anda
 								alt='Foreign Visitor Service Logo'
-								width={42} // Sesuaikan ukuran sesuai kebutuhan
-								height={42} // Sesuaikan ukuran sesuai kebutuhan
+								width={52} // Sesuaikan ukuran sesuai kebutuhan
+								height={52} // Sesuaikan ukuran sesuai kebutuhan
 								className='mr-2' // Margin kanan untuk memisahkan logo dari teks
 							/>
-							<div className='flex-wrap'>
-								<h1 className='text-sm font-bold'>Polresta Pontianak</h1>
-								<p className='text-sm'>Jln.Johan Idrus No.1 Pontianak</p>
-								<div className='border-b-2 border-cyan-950 w-full'></div>
+							<div className='flex-wrap dark:text-white'>
+								<h1 className='text-sm font-bold'>
+									Kepolisian Resort Kota Pontianak
+								</h1>
+								<p className='text-xs mb-1'>
+									Jl.Gusti Johan Idrus No.1 Pontianak
+								</p>
+								<div className='border-b-2 border-cyan-950 w-full dark:border-white '></div>
 							</div>
 						</div>
 						<ThemeToggle />
