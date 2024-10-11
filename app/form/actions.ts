@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 
-export async function submitSTMD(prevState: any, formData: FormData) {
+export async function submitSTMD(prevState: unknown, formData: FormData) {
 	// In a real application, you would process and store the form data here
 	// For this example, we'll just simulate a submission delay
 	await new Promise((resolve) => setTimeout(resolve, 1000));

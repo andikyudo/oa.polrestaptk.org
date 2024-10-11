@@ -1,28 +1,35 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 import { useLanguage, Language } from "../../components/LanguageContext";
 import {
 	termsTranslations,
 	TermsTranslationKey,
 } from "../../translations/terms";
 import TermsSection from "../../components/TermsSection";
+import { useHeader } from "../../components/HeaderContext";
 
 export default function TermsAndConditions() {
 	const { language } = useLanguage();
+	const { setShowHeader } = useHeader();
 	const t = (key: TermsTranslationKey): string => {
 		return termsTranslations[language as Language][key] || key;
 	};
+	useEffect(() => {
+		setShowHeader(true);
+		return () => setShowHeader(false);
+	}, [setShowHeader]);
 
 	return (
 		<main className='container mx-auto max-w-2xl p-4'>
 			<div className='bg-white dark:bg-gray-800 shadow-2xl rounded-lg overflow-hidden'>
-				<div className='bg-blue-600 dark:bg-blue-800 p-4 text-white'>
+				<div className='bg-stone-500 dark:bg-neutral-900 p-4 text-white'>
 					<h1 className='text-xl font-bold text-center'>
 						{t("terms_and_conditions")}
 					</h1>
 				</div>
-				<div className='p-4 space-y-6'>
+				<div className='p-4 space-y-6 text-sm'>
 					<TermsSection
 						title={t("legal_basis")}
 						items={[t("law_1"), t("law_2"), t("law_3"), t("law_4"), t("law_5")]}
