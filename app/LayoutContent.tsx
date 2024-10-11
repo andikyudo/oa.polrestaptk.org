@@ -20,21 +20,25 @@ export default function LayoutContent({
 	return (
 		<div className='min-h-screen flex flex-col bg-white from-blue-100 to-white dark:to-gray-900'>
 			{showHeader && (
-				<header className='bg-white dark:bg-yellow-300 text-black shadow-xl'>
+				<header className='bg-white dark:bg-zinc-600 text-black dark:text-white shadow-xl'>
 					<div className='container mx-auto p-6'>
 						<div className='flex justify-between items-center'>
 							<div className='flex items-center'>
 								<Image
 									src='/logo_polresta.png'
 									alt='Foreign Visitor Service Logo'
-									width={42}
-									height={42}
+									width={52}
+									height={52}
 									className='mr-2'
 								/>
 								<div className='flex-wrap'>
-									<h1 className='text-sm font-bold'>Polresta Pontianak</h1>
-									<p className='text-sm'>Jln.Johan Idrus No.1 Pontianak</p>
-									<div className='border-b-2 border-cyan-950 w-full'></div>
+									<h1 className='text-md font-bold'>
+										Kepolisian Resor Kota Pontianak
+									</h1>
+									<p className='text-xs mb-1'>
+										Jl.Gusti Johan Idrus No.1 Pontianak
+									</p>
+									<div className='border-b-2 border-cyan-950 w-full dark:border-white'></div>
 								</div>
 							</div>
 							<ThemeToggle />
