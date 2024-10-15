@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import Compressor from "compressorjs";
 import { Camera, Upload, Loader, Check, X } from "lucide-react";
 import { useLanguage } from "./LanguageContext";
+import Image from "next/image";
 
 interface DocumentScannerProps {
 	onScanComplete: (dataUri: string, isBlurry: boolean) => void;
@@ -24,27 +25,7 @@ const DocumentScanner: React.FC<DocumentScannerProps> = ({
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const streamRef = useRef<MediaStream | null>(null);
 
-	useEffect(() => {
-		resetCamera();
-		return () => {
-			if (streamRef.current) {
-				streamRef.current.getTracks().forEach((track) => track.stop());
-			}
-		};
-	}, [currentDocument]);
-
-	const resetCamera = async () => {
-		setDataUri(null);
-		setCaptureStatus("idle");
-		setIsProcessing(false);
-		setIsCameraReady(false);
-		if (streamRef.current) {
-			streamRef.current.getTracks().forEach((track) => track.stop());
-		}
-		await startCamera();
-	};
-
-	const startCamera = async () => {
+	const startCamera = useCallback(async () => {
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({
 				video: {
@@ -63,7 +44,27 @@ const DocumentScanner: React.FC<DocumentScannerProps> = ({
 			console.error("Error accessing camera:", err);
 			setCameraError(t("camera_access_error"));
 		}
-	};
+	}, [t]);
+
+	const resetCamera = useCallback(async () => {
+		setDataUri(null);
+		setCaptureStatus("idle");
+		setIsProcessing(false);
+		setIsCameraReady(false);
+		if (streamRef.current) {
+			streamRef.current.getTracks().forEach((track) => track.stop());
+		}
+		await startCamera();
+	}, [startCamera]); // Add startCamera to the dependency array
+
+	useEffect(() => {
+		resetCamera();
+		return () => {
+			if (streamRef.current) {
+				streamRef.current.getTracks().forEach((track) => track.stop());
+			}
+		};
+	}, [resetCamera]);
 
 	const captureDocument = () => {
 		if (canvasRef.current && videoRef.current) {
@@ -104,13 +105,11 @@ const DocumentScanner: React.FC<DocumentScannerProps> = ({
 		if (context) {
 			const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 			const data = imageData.data;
-			let sum = 0;
 			let diffSum = 0;
 			const len = data.length;
 
 			for (let i = 0; i < len; i += 4) {
 				const gray = (data[i] + data[i + 1] + data[i + 2]) / 3;
-				sum += gray;
 
 				if (i > 0) {
 					const prevGray = (data[i - 4] + data[i - 3] + data[i - 2]) / 3;
@@ -118,7 +117,6 @@ const DocumentScanner: React.FC<DocumentScannerProps> = ({
 				}
 			}
 
-			const avg = sum / (len / 4);
 			const diffAvg = diffSum / (len / 4);
 
 			const blurThreshold = 2;
@@ -233,10 +231,12 @@ const DocumentScanner: React.FC<DocumentScannerProps> = ({
 						</p>
 					</>
 				) : (
-					<img
+					<Image
 						src={dataUri}
 						alt='captured'
-						className='w-full h-full object-cover rounded-lg'
+						layout='fill'
+						objectFit='cover'
+						className='rounded-lg'
 					/>
 				)}
 			</div>
