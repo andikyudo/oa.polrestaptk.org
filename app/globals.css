@@ -44,3 +44,47 @@ body {
 .animate-marquee:hover {
 	animation-play-state: paused;
 }
+
+@keyframes scan {
+	0% {
+		transform: translateY(0%);
+	}
+	50% {
+		transform: translateY(100%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
+}
+
+.animate-scan {
+	animation: scan 2s linear infinite;
+}
+
+@keyframes scanVertical {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(100%);
+	}
+}
+
+@keyframes scanHorizontal {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(100%);
+	}
+}
+
+.animate-scan-vertical {
+	animation: scanVertical 2s linear infinite;
+}
+
+.animate-scan-horizontal {
+	animation: scanHorizontal 2s linear infinite;
+}

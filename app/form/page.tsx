@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import {
 	CalendarIcon,
 	ClockIcon,
@@ -13,6 +14,7 @@ import {
 	GlobeIcon,
 	ChevronRightIcon,
 	ChevronLeftIcon,
+	ScanIcon,
 } from "lucide-react";
 import { useFormState } from "../hooks/useFormState";
 import { InputField } from "../../components/InputField";
@@ -23,6 +25,7 @@ export default function RegistrationForm() {
 	const { t } = useLanguage();
 	const { setShowHeader } = useHeader();
 	const [currentStep, setCurrentStep] = useState(1);
+	const [isSubmitted, setIsSubmitted] = useState(false);
 	const { state: formData, handleChange } = useFormState({
 		// ... (state remains the same)
 	});
@@ -30,6 +33,7 @@ export default function RegistrationForm() {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		console.log(formData);
+		setIsSubmitted(true);
 	};
 
 	const steps = [
@@ -202,6 +206,17 @@ export default function RegistrationForm() {
 								)}
 							</div>
 						</form>
+						{isSubmitted && (
+							<div className='mt-8 text-center'>
+								<Link
+									href='/scan'
+									className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center transition duration-300 ease-in-out'
+								>
+									<ScanIcon className='h-5 w-5 mr-2' />
+									{t("proceed_to_scan")}
+								</Link>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
